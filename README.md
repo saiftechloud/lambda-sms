@@ -10,7 +10,7 @@ Cloudformation stack for send multiple SMS messages
     - Lambda function (sms-sender-Lambda) //can be same
     - IAM Role (sms-sender-LambdaRole) //can be same
 
-2. Upload data.csv file to the S3 bucket sms-sender-source-bucket
+2. Upload data.csv file to the S3 bucket sms-sender-source-bucket, sample data.csv is in the repo for reference
 
 
 Be aware that SMS capability on AWS is limited to certain regions, make sure you refer https://docs.aws.amazon.com/sns/latest/dg/sms_supported-countries.html
