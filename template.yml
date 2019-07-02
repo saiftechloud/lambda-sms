@@ -5,7 +5,7 @@ Resources:
   SourceBucket:
     Type: AWS::S3::Bucket
     Properties: 
-      BucketName: sms-sender-source-bucket
+      BucketName: sms-sender-source-bucket-1
       NotificationConfiguration:
         LambdaConfigurations:
         - Event: 's3:ObjectCreated:*'
@@ -23,7 +23,7 @@ Resources:
       FunctionName: !Ref LambdaFunction
       Principal: s3.amazonaws.com
       SourceAccount: !Ref "AWS::AccountId"
-      SourceArn: arn:aws:s3:::sms-sender-source-bucket
+      SourceArn: arn:aws:s3:::sms-sender-source-bucket-1
 
   LambdaFunction:
     Type: "AWS::Lambda::Function"
@@ -40,7 +40,7 @@ Resources:
           s3Client  = boto3.resource(u's3')
 
           # get a handle on the bucket that holds your file
-          bucket = s3Client.Bucket(u'sms-sender-source-bucket')
+          bucket = s3Client.Bucket(u'sms-sender-source-bucket-1')
 
           # get a handle on the object you want (i.e. your file (data.csv))
           obj = bucket.Object(key=u'data.csv')
@@ -58,7 +58,7 @@ Resources:
                           print(row)
                           response = snsClient.publish(
                               PhoneNumber=row[1],
-                              Message="Hello" + row[0] + "promotion",
+                              Message="Hello " + row[0] + " Hope you having a great day , This message is to make your day better. 50% discount on entire store this July the 4th ",
                               MessageAttributes = {
                                 'AWS.SNS.SMS.SMSType': {
                                     'DataType': 'String',
