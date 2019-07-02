@@ -5,7 +5,7 @@ Resources:
   SourceBucket:
     Type: AWS::S3::Bucket
     Properties: 
-      BucketName: sms-sender-source-bucket-1
+      BucketName: sms-sender-source-bucket-2
       NotificationConfiguration:
         LambdaConfigurations:
         - Event: 's3:ObjectCreated:*'
@@ -23,7 +23,7 @@ Resources:
       FunctionName: !Ref LambdaFunction
       Principal: s3.amazonaws.com
       SourceAccount: !Ref "AWS::AccountId"
-      SourceArn: arn:aws:s3:::sms-sender-source-bucket-1
+      SourceArn: arn:aws:s3:::sms-sender-source-bucket-2
 
   LambdaFunction:
     Type: "AWS::Lambda::Function"
@@ -40,7 +40,7 @@ Resources:
           s3Client  = boto3.resource(u's3')
 
           # get a handle on the bucket that holds your file
-          bucket = s3Client.Bucket(u'sms-sender-source-bucket-1')
+          bucket = s3Client.Bucket(u'sms-sender-source-bucket-2')
 
           # get a handle on the object you want (i.e. your file (data.csv))
           obj = bucket.Object(key=u'data.csv')
